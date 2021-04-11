@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Weather Dashborad</title>
+  </head>
+  <body>
+    <header>
+      <h1>Weather Dashboard</h1>
+    </header>
+    <aside>
+      <div id="search-section">
+        <h2>Search for a City:</h2>
+        <input id="search-field" type="text" />
+        <button id="search-city">Search</button>
+      </div>
+      <div id="saved-cities">
+        <button></button>
+        <button></button>
+        <button></button>
+        <button></button>
+        <!-- Button for saved searches -->
+      </div>
+    </aside>
+    <main>
+      <section id="current-day">
+        <h1 id="selected-city">
+          [CITY NAME HERE]<span id="current-date">[CURRENT DATE HERE]</span>
+        </h1>
+        <!-- city name and date above ^^^ -->
+        <p>Temp: <span class="temp"></span></p>
+        <p>Wind: <span class="wind"></span></p>
+        <p>Humidity: <span class="humidity"></span></p>
+        <p>UV Index: <span id="UV"></span></p>
+      </section>
+
+      <section id="5-day-forecast">
+        <h2>5-Day-Forcast</h2>
+        <div>
+          <h3 id="5-day-date"></h3>
+          <i></i>
+          <p>Temp:<span class="temp"></span></p>
+          <p>Wind:<span class="wind"></span></p>
+          <p>Humidity:<span class="humidity"></span></p>
+        </div>
+        <div>
+          <h3 id="5-day-date"></h3>
+          <i id="weather-icon"></i>
+          <p>Temp:<span class="temp"></span></p>
+          <p>Wind:<span class="wind"></span></p>
+          <p>Humidity:<span class="humidity"></span></p>
+        </div>
+        <div>
+          <h3 id="5-day-date"></h3>
+          <i id="weather-icon"></i>
+          <p>Temp:<span class="temp"></span></p>
+          <p>Wind:<span class="wind"></span></p>
+          <p>Humidity:<span class="humidity"></span></p>
+        </div>
+        <div>
+          <h3 id="5-day-date"></h3>
+          <i id="weather-icon"></i>
+          <p>Temp:<span class="temp"></span></p>
+          <p>Wind:<span class="wind"></span></p>
+          <p>Humidity:<span class="humidity"></span></p>
+        </div>
+        <div>
+          <h3 id="5-day-date"></h3>
+          <i id="weather-icon"></i>
+          <p>Temp:<span class="temp"></span></p>
+          <p>Wind:<span class="wind"></span></p>
+          <p>Humidity:<span class="humidity"></span></p>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>
