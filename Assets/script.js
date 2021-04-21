@@ -19,7 +19,7 @@ searchButton.addEventListener('click', fetchWeatherData)
 function fetchWeatherData(){
     let inputValue = inputField.value
     console.log(inputField)
-    const currentWeatherAPI = `http://api.openweathermap.org/data/2.5/weather?q=${inputValue}&appid=f4c1ad1284caf81039b2d3d58112a7dc&units=metric`
+    const currentWeatherAPI = `https://api.openweathermap.org/data/2.5/weather?q=${inputValue}&appid=f4c1ad1284caf81039b2d3d58112a7dc&units=metric`
     // get the city name in input - temperal literal
     fetch(currentWeatherAPI).then(function (currentWeatherResponse){
         return currentWeatherResponse.json()
@@ -59,7 +59,7 @@ let degreeCelcius = `\u2103`
 
 console.log(degreeCelcius)
 function latLongWeatherData(lat, lon){
-    const oneCallApi = 'http://api.openweathermap.org/data/2.5/onecall?lat=' + lat + '&lon=' + lon +'&exclude=minutely,hourly&appid=f4c1ad1284caf81039b2d3d58112a7dc&units=metric'
+    const oneCallApi = 'https://api.openweathermap.org/data/2.5/onecall?lat=' + lat + '&lon=' + lon +'&exclude=minutely,hourly&appid=f4c1ad1284caf81039b2d3d58112a7dc&units=metric'
     // One Call Api concatinate lat and long from previous fetch call placeholders are used to let function know where to place data.
     fetch(oneCallApi).then(function (oneCallResponse){
         console.log(oneCallResponse)
