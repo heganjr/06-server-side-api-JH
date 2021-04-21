@@ -56,8 +56,8 @@ let cityName;
 
 let degreeCelcius = `\u2103`
 // unicode character with codepoint
-
 console.log(degreeCelcius)
+
 function latLongWeatherData(lat, lon){
     const oneCallApi = 'https://api.openweathermap.org/data/2.5/onecall?lat=' + lat + '&lon=' + lon +'&exclude=minutely,hourly&appid=f4c1ad1284caf81039b2d3d58112a7dc&units=metric'
     // One Call Api concatinate lat and long from previous fetch call placeholders are used to let function know where to place data.
@@ -95,7 +95,7 @@ function latLongWeatherData(lat, lon){
         let currentUV = allTheWeatherData.current.uvi
         $("#UV").text(`${currentUV}`);
 
-        for (let i = 0; i < 5; i++) {
+        for (let i = 1; i < 6; i++) {
             let fiveDayTemp = allTheWeatherData.daily[i].temp.day
             $(`#temp${[i]}`).text(`${fiveDayTemp}${degreeCelcius}`);
 
@@ -110,6 +110,10 @@ function latLongWeatherData(lat, lon){
             let fiveDayWeatherIcon = allTheWeatherData.daily[i].weather[0].icon
             console.log(fiveDayWeatherIcon)
             $(`#weather-icon${[i]}`).attr(`src`, `http://openweathermap.org/img/wn/${fiveDayWeatherIcon}.png`);
+
+            let unixTimestampDate = new Date(allTheWeatherData.daily[i].dt * 1000).toLocaleDateString("en-GB")
+            console.log(unixTimestampDate)
+            $(`#date${i}`).text(unixTimestampDate);
         }
 
         
