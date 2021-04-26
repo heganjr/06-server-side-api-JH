@@ -49,4 +49,4 @@ Currently there is no styling on the page, but the functionality works. I plan t
 
 Current deployment (before styling)
 
-![screen-shot](./assets/images/screenshot.png)
+![screen-shot](./Assets/images/screenshot.png)
