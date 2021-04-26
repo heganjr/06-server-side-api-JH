@@ -121,7 +121,6 @@ let cityName;
 
 let degreeCelcius = `\u2103`;
 // unicode character with codepoint
-console.log(degreeCelcius);
 
 function latLongWeatherData(lat, lon) {
   const oneCallApi =
@@ -155,6 +154,7 @@ function latLongWeatherData(lat, lon) {
 
       let currentTemp = allTheWeatherData.current.temp;
       $("#current-day .temp").text(`${currentTemp}${degreeCelcius}`);
+      console.log(allTheWeatherData)
 
       let currentWind = allTheWeatherData.current.wind_speed;
       // converting metres per sec to kph
