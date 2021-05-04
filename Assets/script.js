@@ -2,8 +2,7 @@ const searchButton = document.getElementById("search-city");
 
 const inputField = document.getElementById("search-field");
 
-const savedCitiesDiv = document.getElementById("saved-cities")
-
+const savedCitiesDiv = document.getElementById("saved-cities");
 
 searchButton.addEventListener("click", clickEventFunction);
 
@@ -13,13 +12,12 @@ inputField.addEventListener("keyup", function (event) {
   }
 });
 
-savedCitiesDiv.addEventListener("click", buttonClickEvent)
+savedCitiesDiv.addEventListener("click", buttonClickEvent);
 
-function buttonClickEvent(event){
-    console.log(event)
-    let buttonValue = event.target.outerText
-    fetchWeatherData(buttonValue)
-
+function buttonClickEvent(event) {
+  console.log(event);
+  let buttonValue = event.target.outerText;
+  fetchWeatherData(buttonValue);
 }
 // The value of the even goes to fetch
 
@@ -36,9 +34,12 @@ function renderCityButtons() {
     // same as CitySave = does not equal null
     for (let i = 0; i < citySave.length; i++) {
       const city = citySave[i];
-
+      const liElement = document.createElement("li");
+      liElement.setAttribute("class", "list-group-item");
       const cityButtonElement = document.createElement("button");
-      $("#saved-cities").append(cityButtonElement);
+      $(liElement).append(cityButtonElement);
+      $("#saved-cities").append(liElement);
+      // Putting button inside the list elements and then appending the list elements to unordered list
       cityButtonElement.setAttribute("id", city);
       cityButtonElement.textContent = city;
       // Creating button element
@@ -58,13 +59,12 @@ function getLocalStorage() {
   // Tidying up code with functions
 }
 
-function clickEventFunction(){
-    let inputValue = inputField.value;
-    fetchWeatherData(inputValue)
-
+function clickEventFunction() {
+  let inputValue = inputField.value;
+  fetchWeatherData(inputValue);
 }
 function fetchWeatherData(inputValue) {
-    console.log(inputValue)
+  console.log(inputValue);
   const currentWeatherAPI = `https://api.openweathermap.org/data/2.5/weather?q=${inputValue}&appid=f4c1ad1284caf81039b2d3d58112a7dc&units=metric`;
   // get the city name in input - temperal literal
   fetch(currentWeatherAPI)
@@ -84,11 +84,11 @@ function fetchWeatherData(inputValue) {
       let cityName = latLonData.name;
       citySave = getLocalStorage();
       if (citySave === null) {
-          citySave = []
+        citySave = [];
       }
 
-      if(citySave.length === 10){
-          citySave.shift()
+      if (citySave.length === 10) {
+        citySave.shift();
         //   shift always grabs first array [0]
         //   pop grabs last in the array
       }
@@ -103,7 +103,6 @@ function fetchWeatherData(inputValue) {
         // setting local storage for the cities
       }
 
-
       renderCityButtons();
       // Adding city name to the current day h1 title
       console.log(cityName);
@@ -116,19 +115,13 @@ function fetchWeatherData(inputValue) {
       // parameters are used to bring variable data from this function down to latLongWeatherData - positioning is important as it represents the placeholders in the following function bbased on it's positioning.
     });
 }
-
 let cityName;
 
 let degreeCelcius = `\u2103`;
 // unicode character with codepoint
 
 function latLongWeatherData(lat, lon) {
-  const oneCallApi =
-    "https://api.openweathermap.org/data/2.5/onecall?lat=" +
-    lat +
-    "&lon=" +
-    lon +
-    "&exclude=minutely,hourly&appid=f4c1ad1284caf81039b2d3d58112a7dc&units=metric";
+  const oneCallApi = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&exclude=minutely,hourly&appid=f4c1ad1284caf81039b2d3d58112a7dc&units=metric`;
   // One Call Api concatinate lat and long from previous fetch call placeholders are used to let function know where to place data.
   fetch(oneCallApi)
     .then(function (oneCallResponse) {
@@ -154,7 +147,7 @@ function latLongWeatherData(lat, lon) {
 
       let currentTemp = allTheWeatherData.current.temp;
       $("#current-day .temp").text(`${currentTemp}${degreeCelcius}`);
-      console.log(allTheWeatherData)
+      console.log(allTheWeatherData);
 
       let currentWind = allTheWeatherData.current.wind_speed;
       // converting metres per sec to kph
@@ -163,8 +156,29 @@ function latLongWeatherData(lat, lon) {
       let currentHumidity = allTheWeatherData.current.humidity;
       $("#current-day .humidity").text(`${currentHumidity}%`);
 
-      let currentUV = allTheWeatherData.current.uvi;
+      let currentUV = 10.90 // allTheWeatherData.current.uvi;
       $("#UV").text(`${currentUV}`);
+
+      if (currentUV >= 0 && currentUV <= 2.99) {
+        $("#uv-text").css("backgroundColor", "green");
+      }
+
+      if (currentUV >= 3 && currentUV <= 5.99) {
+        $("#uv-text").css("backgroundColor", "yellow");
+      }
+
+      if (currentUV >= 6 && currentUV <= 7.99) {
+        $("#uv-text").css("backgroundColor", "orange");
+      }
+
+      if (currentUV >= 8 && currentUV <= 10.99) {
+        $("#uv-text").css("backgroundColor", "red");
+      }
+
+      if (currentUV >= 11) {
+        $("#uv-text").css("backgroundColor", "purple");
+      }
+      // UV Colour based on value
 
       for (let i = 1; i < 6; i++) {
         let fiveDayTemp = allTheWeatherData.daily[i].temp.day;
