@@ -156,7 +156,7 @@ function latLongWeatherData(lat, lon) {
       let currentHumidity = allTheWeatherData.current.humidity;
       $("#current-day .humidity").text(`${currentHumidity}%`);
 
-      let currentUV = 10.90 // allTheWeatherData.current.uvi;
+      let currentUV = allTheWeatherData.current.uvi;
       $("#UV").text(`${currentUV}`);
 
       if (currentUV >= 0 && currentUV <= 2.99) {
